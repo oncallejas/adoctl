@@ -4,10 +4,17 @@ import (
 	"context"
 	"log"
 
+	"github.com/cheynewallace/tabby"
 	"github.com/microsoft/azure-devops-go-api/azuredevops"
 	"github.com/microsoft/azure-devops-go-api/azuredevops/core"
 	"github.com/oncallejas/greetctl/api"
 )
+
+type Project struct {
+	Id    string
+	Name  string
+	State string
+}
 
 func ListProjects() {
 	config, err := api.LoadConfig("$HOME")
@@ -33,10 +40,13 @@ func ListProjects() {
 
 	index := 0
 	for responseValue != nil {
+		t := tabby.New()
+		t.AddHeader("Id", "Name", "State", "Visibility")
 		for _, teamProjectReference := range (*responseValue).Value {
-			log.Printf("Name[%v] = %v", index, *teamProjectReference.Name)
+			t.AddLine(*teamProjectReference.Id, *teamProjectReference.Name, *teamProjectReference.State, *teamProjectReference.Visibility)
 			index++
 		}
+		t.Print()
 
 		if responseValue.ContinuationToken != "" {
 			// Get next page of team projects
