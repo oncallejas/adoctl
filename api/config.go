@@ -1,6 +1,10 @@
 package api
 
-import "github.com/spf13/viper"
+import (
+	"log"
+
+	"github.com/spf13/viper"
+)
 
 type Config struct {
 	ADO_URL   string `mapstructure:"ADO_URL"`
@@ -16,6 +20,7 @@ func LoadConfig(path string) (config Config, err error) {
 
 	err = viper.ReadInConfig()
 	if err != nil {
+		log.Fatalf("Error reading config file.  %s", err)
 		return
 	}
 
