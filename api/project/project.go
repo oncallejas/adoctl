@@ -10,12 +10,6 @@ import (
 	"github.com/oncallejas/greetctl/api"
 )
 
-type Project struct {
-	Id    string
-	Name  string
-	State string
-}
-
 func ListProjects() {
 	config, err := api.LoadConfig("$HOME")
 	if err != nil {

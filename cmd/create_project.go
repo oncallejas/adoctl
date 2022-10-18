@@ -27,7 +27,16 @@ to quickly create a Cobra application.`,
 func init() {
 	createCmd.AddCommand(create_projectCmd)
 
-	/* create_projectCmd.Flags().StringP("project-name", "pn", "", "Name of project to be created")
-	create_projectCmd.MarkFlagRequired("name")
-	viper.BindPFlag("project-name", create_projectCmd.Flags().Lookup("project-name")) */
+	// Flag for project's name
+	// create_projectCmd.Flags().StringP("project-name", "pn", "", "Name of the project to be created")
+	// viper.BindPFlag("project-name", create_projectCmd.Flags().Lookup("project-name"))
+
+	// Flag for project's description
+	// create_projectCmd.Flags().StringP("project-description", "pd", "", "Projects description to be created")
+	// viper.BindPFlag("project-description", createCmd.Flags().Lookup("project-description"))
+
+	// Flag for process id to be relationated with project
+	// create_projectCmd.Flags().StringP("process-id", "pid", "", "Process Id to be used to create project")
+	// viper.BindPFlag("process-id", createCmd.Flags().Lookup("process-id"))
+
 }
