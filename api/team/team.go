@@ -7,7 +7,7 @@ import (
 	"github.com/cheynewallace/tabby"
 	"github.com/microsoft/azure-devops-go-api/azuredevops"
 	"github.com/microsoft/azure-devops-go-api/azuredevops/core"
-	"github.com/oncallejas/greetctl/api"
+	"github.com/oncallejas/adoctl/api"
 )
 
 func ListTeams(teamProjectId *string) {

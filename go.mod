@@ -1,4 +1,4 @@
-module github.com/oncallejas/greetctl
+module github.com/oncallejas/adoctl
 
 go 1.19
 

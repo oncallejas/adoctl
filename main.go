@@ -3,7 +3,7 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 */
 package main
 
-import "github.com/oncallejas/greetctl/cmd"
+import "github.com/oncallejas/adoctl/cmd"
 
 func main() {
 	cmd.Execute()

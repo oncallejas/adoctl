@@ -13,7 +13,7 @@ type Config struct {
 
 func LoadConfig(path string) (config Config, err error) {
 	viper.AddConfigPath(path)
-	viper.SetConfigName("greetctl")
+	viper.SetConfigName("adoctl")
 	viper.SetConfigType("env")
 
 	viper.AutomaticEnv()
