@@ -5,20 +5,12 @@ import (
 	"log"
 
 	"github.com/cheynewallace/tabby"
-	"github.com/microsoft/azure-devops-go-api/azuredevops"
 	"github.com/microsoft/azure-devops-go-api/azuredevops/core"
 	"github.com/oncallejas/adoctl/api"
 )
 
 func ListTeams(teamProjectId *string) {
-	config, err := api.LoadConfig("$HOME")
-	if err != nil {
-		log.Fatal("cannot load config: ", err)
-	}
-	organizationUrl := config.ADO_URL
-	personalAccessToken := config.ADO_TOKEN
-
-	connection := azuredevops.NewPatConnection(organizationUrl, personalAccessToken)
+	connection := api.GetConnection()
 
 	ctx := context.Background()
 

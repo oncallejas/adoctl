@@ -3,6 +3,7 @@ package api
 import (
 	"log"
 
+	"github.com/microsoft/azure-devops-go-api/azuredevops"
 	"github.com/spf13/viper"
 )
 
@@ -25,5 +26,17 @@ func LoadConfig(path string) (config Config, err error) {
 	}
 
 	err = viper.Unmarshal(&config)
+	return
+}
+
+func GetConnection() (Connection *azuredevops.Connection) {
+	config, err := LoadConfig("$HOME")
+	if err != nil {
+		log.Fatal("cannot load config: ", err)
+	}
+	organizationUrl := config.ADO_URL
+	personalAccessToken := config.ADO_TOKEN
+
+	Connection = azuredevops.NewPatConnection(organizationUrl, personalAccessToken)
 	return
 }
