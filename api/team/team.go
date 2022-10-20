@@ -68,3 +68,22 @@ func CreateTeam(projectId string, teamName string, teamDescription string) {
 	}
 	fmt.Println("Team ", *responseValue.Name, " created succesfully")
 }
+
+func DeleteTeam(projectId string, teamId string) {
+	connection := api.GetConnection()
+
+	ctx := context.Background()
+
+	coreClient, err := core.NewClient(ctx, connection)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	teamArgs := core.DeleteTeamArgs{
+		ProjectId: &projectId,
+		TeamId:    &teamId,
+	}
+
+	coreClient.DeleteTeam(ctx, teamArgs)
+	fmt.Println("Project with Id: ", teamId, "was deleted succesfully!")
+}
