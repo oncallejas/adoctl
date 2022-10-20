@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/cheynewallace/tabby"
+	"github.com/google/uuid"
 	"github.com/microsoft/azure-devops-go-api/azuredevops/core"
 	"github.com/oncallejas/adoctl/api"
 )
@@ -87,4 +88,26 @@ func CreateProject(projectName *string, projectDescription *string, projectSourc
 
 	fmt.Println("Project queue to be created. ", responseValue)
 
+}
+
+func DeleteProject(projectId *uuid.UUID) {
+	connection := api.GetConnection()
+
+	ctx := context.Background()
+
+	coreClient, err := core.NewClient(ctx, connection)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	projectArgs := core.QueueDeleteProjectArgs{
+		ProjectId: projectId,
+	}
+
+	responseValue, err := coreClient.QueueDeleteProject(ctx, projectArgs)
+	if err != nil {
+		log.Fatal("Cannot delete the project with Id: ", projectId, err)
+	}
+
+	fmt.Println(responseValue)
 }
